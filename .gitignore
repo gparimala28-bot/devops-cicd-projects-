@@ -1,0 +1,38 @@
+# Secrets
+.env
+*.pem
+*.key
+
+# Python
+venv/
+__pycache__/
+
+# Dotnet
+bin/
+obj/
+
+# Node
+node_modules/
+
+# Build outputs
+build/
+dist/
+publish/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Coverage
+coverage/
+htmlcov/
+
+# Jenkins
+workspace/
+jenkins_home/
+
+# SonarQube
+.scannerwork/
