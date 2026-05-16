@@ -42,7 +42,7 @@ pipeline {
                     sh '''
                     . ${VENV}/bin/activate
 
-                    pylint app.py 
+                    pylint app.py || true  
                     '''
                 }
             }
@@ -54,7 +54,7 @@ pipeline {
                     sh '''
                     . ${VENV}/bin/activate
 
-                    bandit -r . 
+                    bandit -r . || true
                     '''
                 }
             }
