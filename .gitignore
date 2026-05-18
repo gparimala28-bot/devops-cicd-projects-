@@ -36,3 +36,10 @@ jenkins_home/
 
 # SonarQube
 .scannerwork/
+
+# GitHub runner
+actions-runner/
+
+# Local env/secrets
+.env
+.env.*
