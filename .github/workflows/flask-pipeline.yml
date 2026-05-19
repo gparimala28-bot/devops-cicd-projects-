@@ -1,0 +1,61 @@
+name: Python App CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Setup Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Run pylint
+      - name: Run pylint
+        run: pylint app.py
+
+      # Run tests
+      - name: Run tests
+        run: pytest
+
+  deploy:
+    needs: test
+    runs-on: self-hosted
+
+    steps:
+      # Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Deploy Flask app
+      - name: Deploy application
+        run: |
+          echo "Deploying application..."
+
+          cd $GITHUB_WORKSPACE
+
+          pip install -r requirements.txt
+
+          pkill -f app.py || true
+
+          nohup python3 app.py > app.log 2>&1 &
+
+          sleep 5
+
+          echo "Deployment completed!"
+
+          ps aux | grep app.py
