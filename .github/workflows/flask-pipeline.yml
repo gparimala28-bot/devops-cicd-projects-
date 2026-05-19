@@ -14,27 +14,30 @@ jobs:
         working-directory: github-actions/flask-app
 
     steps:
-      # Checkout repository
+      # Step 1: Checkout repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Setup Python
+      # Step 2: Setup Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      # Install dependencies
+      # Step 3: Install dependencies
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          python3 -m pip install -r requirements.txt
 
-      # Run pylint
+      # Step 4: Run pylint
       - name: Run pylint
-        run: pylint app.py
+        run: |
+          pylint app.py
 
-      # Run tests
+      # Step 5: Run tests
       - name: Run tests
-        run: pytest
+        run: |
+          pytest
 
   deploy:
     needs: test
@@ -45,22 +48,33 @@ jobs:
         working-directory: github-actions/flask-app
 
     steps:
-      # Checkout repository
+      # Step 1: Checkout repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Deploy Flask app
-      - name: Deploy application
+      # Step 2: Install dependencies on self-hosted runner
+      - name: Install dependencies
         run: |
-          echo "Deploying application..."
+          python3 -m pip install -r requirements.txt --break-system-packages
 
-          pkill -f app.py || true
+      # Step 3: Restart Flask application service
+      - name: Restart Flask service
+        run: |
+         echo "Restarting Flask application..."
 
-          nohup python3 app.py > app.log 2>&1 &
+         sudo systemctl daemon-reload
 
-          sleep 5
+         sudo systemctl restart flask-app
 
-          echo "Deployment completed!"
+         sleep 5
 
-          ps aux | grep app.py
+         echo "Service state:"
+         sudo systemctl is-active flask-app
 
+         echo "Checking Flask process:"
+         ps aux | grep app.py
+
+         echo "Checking port 5000:"
+         ss -tulnp | grep 5000 || true
+
+         echo "Deployment completed successfully!"
