@@ -9,10 +9,11 @@ app = Flask(__name__)
 def home():
     """Return success message."""
     return (
-        "Built and deployed a complete CI/CD pipeline"
-        "using GitHub Actions, Docker, Docker Hub, and AWS EC2 for automated application deployment."
+    "Built and deployed a complete CI/CD pipeline "
+    "using GitHub Actions, Docker, Docker Hub, "
+    "and AWS EC2 for automated application deployment."
     )
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+    
