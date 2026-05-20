@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'github-actions/docker-cicd-project/**'
+      - '.github/workflows/docker-deploy.yml'
 
 jobs:
   test-build-push-deploy:
