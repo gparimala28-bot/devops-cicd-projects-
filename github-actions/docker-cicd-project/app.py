@@ -9,8 +9,8 @@ app = Flask(__name__)
 def home():
     """Return success message."""
     return (
-        "Hello! This Flask application was deployed "
-        "using Docker, GitHub Actions, Docker Hub, and AWS EC2."
+        "Built and deployed a complete CI/CD pipeline"
+        "using GitHub Actions, Docker, Docker Hub, and AWS EC2 for automated application deployment."
     )
 
 
