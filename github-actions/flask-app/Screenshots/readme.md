@@ -1,22 +1,30 @@
 🚀 GitHub Actions CI/CD Pipeline using Flask + Self-Hosted Runner
 
-**📌 Project Overview
-**This project demonstrates a CI/CD pipeline for a Flask application using GitHub Actions and a Self-Hosted Runner.
-**The pipeline automates:
+📌 Project Overview
+
+This project demonstrates a CI/CD pipeline for a Flask application using GitHub Actions and a Self-Hosted Runner.
+The pipeline automates:
 - testing
 - linting
 - deployment
 - service management
+  
 📚 Core Concepts Learned
 
 - GitHub Actions:GitHub Actions is a CI/CD automation platform inside GitHub.
-**It automatically runs workflows when code is pushed to the repository.
-**Workflows help automate testing, validation, and deployment.
+  
+  It automatically runs workflows when code is pushed to the repository.
+ 
+  Workflows help automate testing, validation, and deployment.
 
 - Workflow:A workflow is an automated process defined inside YAML files.
-**Workflow files are stored inside .github/workflows/
-**GitHub automatically detects workflows from this folder.
-**GitHub Actions workflows run automatically based on events.
+
+   Workflow files are stored inside .github/workflows/
+  
+   GitHub automatically detects workflows from this folder.
+  
+   GitHub Actions workflows run automatically based on events.
+  
 - Examples:
   - push
   - pull_request
@@ -25,19 +33,25 @@
   - YAML Workflow File
 
 - Jobs:Jobs are separate sections inside a workflow.
-**Each job performs a specific task.
-**Example:
-- test job
-- deploy job
-**Jobs can run independently or depend on other jobs.
+  
+  Each job performs a specific task.
+
+  **Example:
+    - test job
+    - deploy job
+
+  Jobs can run independently or depend on other jobs.
 
 - Steps:Steps are individual commands executed inside a job.
 
 - Runner is the machine that executes GitHub Actions workflows.
-**Types:
- - GitHub-hosted runner
- - Self-hosted runner
+  
+  -Types:
+     - GitHub-hosted runner
+     - Self-hosted runner
+   
 **In this project:
+
 - Ubuntu/Linux machine acts as self-hosted runner.
 - Self-Hosted Runner:A self-hosted runner is your own machine connected to GitHub Actions.
 - It allows:
@@ -46,8 +60,9 @@
  -better environment control
 
 - systemd:systemd is a Linux service manager.
-**It keeps applications running as background services.
-**Benefits:
+It keeps applications running as background services.
+
+Benefits:
  - automatic restart
  - survives reboot
  - centralized logs
@@ -81,7 +96,6 @@ Deploy Job (Self-Hosted Runner)
 Restart Flask Service
         ↓
 Application Running
-
 
 ⚙️ Pipeline Stages Implemented
 1. Dependency Installation
